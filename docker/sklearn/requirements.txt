@@ -1,0 +1,5 @@
+scikit-learn>=1.8.0
+pandas>=2.0.0
+matplotlib>=3.6.1
+mlflow>=3.10.0
+sagemaker-mlflow>=0.2.0

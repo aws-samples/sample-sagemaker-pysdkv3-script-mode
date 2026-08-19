@@ -1,0 +1,16 @@
+# Dependencies the INFERENCE endpoint needs to serve this model.
+# base.sh copies this to $SM_MODEL_DIR/requirements.txt so it lands at the root
+# of model.tar.gz. The DJL Serving container pip-installs a root-level
+# requirements.txt at startup (it does NOT install one nested under code/), which
+# is how deploy/stable_diffusion/inference.py gets its imports (boto3 for the
+# Secrets Manager HF_TOKEN fetch, diffusers to load SD 3.5 + the LoRA weights).
+#
+# torch is intentionally omitted: the DJL GPU inference image already ships a
+# CUDA-matched torch, and reinstalling it can break the CUDA build.
+boto3>=1.34.0
+diffusers>=0.32.0
+transformers>=4.48.0
+accelerate>=1.3.0
+peft>=0.14.0
+sentencepiece>=0.2.0
+protobuf>=5.29.0
